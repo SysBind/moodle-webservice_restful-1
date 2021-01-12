@@ -55,7 +55,7 @@ function get_requested_path(\moodle_url $baseurl, $param = '_r') {
     $routepath = $baseurl->get_path();
 
     if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
-        // Checks whether $_SERVER['REQUEST_URI'] contains '.../index.php/' instead of '.../index.php?'.
+        // Checks whether $_SERVER['REQUEST_URI'] contains '.../server.php/' instead of '.../server.php?'.
         if ((strpos($_SERVER['REQUEST_URI'], $routepath . '/') !== false)
                 && isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) {
             $hasforcedslashargs = true;

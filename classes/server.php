@@ -58,7 +58,7 @@ class server extends \webservice_base_server {
         global $CFG;
         parent::__construct(WEBSERVICE_AUTHMETHOD_PERMANENT_TOKEN);
 
-        $this->baseurl = new \moodle_url('/webservice/restful/index.php');
+        $this->baseurl = new \moodle_url('/webservice/restful/server.php');
         $this->routes = $routes;
         $this->verbose = $CFG->debugdeveloper ? true : false;
     }

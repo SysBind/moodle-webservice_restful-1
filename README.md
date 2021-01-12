@@ -9,7 +9,7 @@ Introduction
 The default protocols included in Moodle are RPC-like protocols, even the `rest` one, and thus do not use verbose URLs, HTTP methods or HTTP status codes. This plugin attempts to remedy this by mapping URLs and HTTP methods to existing external functions.
 
 ```
-GET /webservice/restful/index.php/courses/2
+GET /webservice/restful/server.php/courses/2
 
 HTTP/1.1 200 OK
 Content-Length: 4211
@@ -42,7 +42,7 @@ __NOT PRODUCTION READY:__ This plugin is yet in alpha, do not use it in producti
 The API
 -------
 
-The root of all the following is `webservice/restful/index.php`.
+The root of all the following is `webservice/restful/server.php`.
 
 | Route                 | Method | Comment             |
 |-----------------------|--------|---------------------|
@@ -58,7 +58,7 @@ How to use
 
 Enable everything needed as for any other webservice protocol, and create a token.
 
-* The requests are made at `/webservice/restful/index.php/API_ROUTE`
+* The requests are made at `/webservice/restful/server.php/API_ROUTE`
 * The header `Content-Type` should read `application/json`
 * The request body must be in JSON
 * The token must be passed using the header `Authorization: Bearer TOKEN`
@@ -66,7 +66,7 @@ Enable everything needed as for any other webservice protocol, and create a toke
 ### Example GET:
 
 ```
-GET /webservice/restful/index.php/courses/2 HTTP/1.1
+GET /webservice/restful/server.php/courses/2 HTTP/1.1
 Accept: */*
 Authorization: Bearer 10787a782d5cea26d69e103729d594f7
 Host: localhost
@@ -91,19 +91,19 @@ Server: Apache/2.4.25 (Ubuntu)
 With [HTTPie](https://httpie.org):
 
 ```
-http https://example.com/webservice/restful/index.php/courses/2 Authorization:'Bearer 10787a782d5cea26d69e103729d594f7'
+http https://example.com/webservice/restful/server.php/courses/2 Authorization:'Bearer 10787a782d5cea26d69e103729d594f7'
 ```
 
 With curl:
 
 ```
-curl localhost/ws/webservice/restful/index.php/courses/2 -H 'Authorization: Bearer 10787a782d5cea26d69e103729d594f7'
+curl localhost/ws/webservice/restful/server.php/courses/2 -H 'Authorization: Bearer 10787a782d5cea26d69e103729d594f7'
 ```
 
 ### Example POST
 
 ```
-POST /webservice/restful/index.php/courses HTTP/1.1
+POST /webservice/restful/server.php/courses HTTP/1.1
 Accept: application/json, */*
 Accept-Encoding: gzip, deflate
 Authorization: Bearer 10787a782d5cea26d69e103729d594f7
@@ -133,7 +133,7 @@ Server: Apache/2.4.25 (Ubuntu)
 With HTTPie:
 
 ```
-http POST localhost/ws/webservice/restful/index.php/courses \
+http POST localhost/ws/webservice/restful/server.php/courses \
     Authorization:'Bearer 10787a782d5cea26d69e103729d594f7' \
     fullname="Another Awesome Course" \
     shortname="AnotherAwesome" \
@@ -143,7 +143,7 @@ http POST localhost/ws/webservice/restful/index.php/courses \
 With curl:
 
 ```
-curl -X POST localhost/ws/webservice/restful/index.php/courses \
+curl -X POST localhost/ws/webservice/restful/server.php/courses \
     -H "Authorization: Bearer 10787a782d5cea26d69e103729d594f7" \
     -H 'Content-Type: application/json' \
     -d '{"fullname": "Another Awesome Course", "shortname": "AnotherAwesome", "categoryid": 1}'

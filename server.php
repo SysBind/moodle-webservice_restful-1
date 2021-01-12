@@ -31,3 +31,4 @@ require(__DIR__ . '/../../config.php');
 require(__DIR__ . '/routes/courses.php');
 $server = new \webservice_restful\server($routes);
 $server->run();
+
