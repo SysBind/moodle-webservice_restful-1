@@ -47,5 +47,16 @@ $routesusers = [
                 }
             ])
         ]
+    ],
+    [
+        'regex' => '/users/update_profiles',
+        'methods' => [
+            'POST' => external_api_method('local_sysbindapi_update_profiles', [
+                'argsmapper' => function($args, $request, $options) {
+                    $test = $request->data;
+                    return $test;
+                }
+            ])
+        ]
     ]
 ];
