@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once(__DIR__ . '/../lib/include.php');
 
-$routes = [
+$routescourses = [
     [
         'regex' => '/courses',
         'methods' => [

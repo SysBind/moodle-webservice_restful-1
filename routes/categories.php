@@ -15,22 +15,35 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Server.
+ * Course routes.
  *
  * @package    webservice_restful
  * @copyright  2017 Frédéric Massart <fred@branchup.tech>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define('NO_DEBUG_DISPLAY', true);
-define('WS_SERVER', true);
+namespace webservice_restful;
+defined('MOODLE_INTERNAL') || die();
 
-require(__DIR__ . '/../../config.php');
+require_once(__DIR__ . '/../lib/include.php');
 
-require(__DIR__ . '/routes/courses.php');
-require(__DIR__ . '/routes/categories.php');
-require(__DIR__ . '/routes/users.php');
-
-$routes = array_merge($routesusers,$routescourses,$routescategories);
-$server = new \webservice_restful\server($routes);
-$server->run();
+$routescategories = [
+    [
+        'regex' => '/categories/([0-9]+)',
+        'precheck' => precheck_exists_or_not_found('course_categories', 0),
+        'methods' => [
+            'GET' => external_api_method('core_course_get_categories', [
+                'argsmapper' => function($args, $request, $options) {
+                    return [
+                        'criteria' => [
+                            [
+                                'key' => 'id',
+                                'value' => $args[0]
+                            ]
+                        ]
+                    ];
+                }
+            ])
+        ]
+    ]
+];
